@@ -1,0 +1,118 @@
+{
+  "name": "line-color-highlight",
+  "displayName": "Line Color Highlight",
+  "description": "Highlight any line with bold text and a chosen color. Right-click or use the command palette to paint lines from a vibrant, customizable palette.",
+  "version": "1.0.0",
+  "publisher": "kazarhan",
+  "author": {
+    "name": "kazarhan"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": ["Other"],
+  "keywords": [
+    "highlight",
+    "line highlight",
+    "color",
+    "annotate",
+    "review",
+    "todo",
+    "bookmark",
+    "neon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kazarhan/line-color-highlight"
+  },
+  "icon": "images/icon.png",
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lineColorHighlight.highlightLine",
+        "title": "Highlight Line with Color"
+      },
+      {
+        "command": "lineColorHighlight.removeHighlight",
+        "title": "Remove Line Highlight"
+      },
+      {
+        "command": "lineColorHighlight.removeAllHighlights",
+        "title": "Remove All Line Highlights"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "lineColorHighlight.highlightLine",
+        "key": "ctrl+alt+h",
+        "mac": "cmd+alt+h"
+      },
+      {
+        "command": "lineColorHighlight.removeHighlight",
+        "key": "ctrl+alt+u",
+        "mac": "cmd+alt+u"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "lineColorHighlight.highlightLine",
+          "group": "lineHighlight@1"
+        },
+        {
+          "command": "lineColorHighlight.removeHighlight",
+          "group": "lineHighlight@2"
+        },
+        {
+          "command": "lineColorHighlight.removeAllHighlights",
+          "group": "lineHighlight@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Line Color Highlight",
+      "properties": {
+        "lineColorHighlight.colors": {
+          "type": "array",
+          "default": [
+            { "label": "REVIEW (Red)", "backgroundColor": "#ff6666", "color": "#000" },
+            { "label": "FIXME (Hot Pink)", "backgroundColor": "#cc0066", "color": "#fff" },
+            { "label": "TODO (White)", "backgroundColor": "#FFF", "color": "#000" },
+            { "label": "HACK (Orange)", "backgroundColor": "#cc6600", "color": "#000" },
+            { "label": "Console (Yellow)", "backgroundColor": "#ffff00", "color": "#000" },
+            { "label": "Console Commented (Dark Yellow)", "backgroundColor": "#333300", "color": "#999" },
+            { "label": "NOTE (Gray)", "backgroundColor": "#444", "color": "#ddd" },
+            { "label": "Section (Dark Gray)", "backgroundColor": "#333", "color": "#888" },
+            { "label": "Success (Green)", "backgroundColor": "#00cc44", "color": "#000" },
+            { "label": "Info (Cyan)", "backgroundColor": "#00bcd4", "color": "#000" },
+            { "label": "Debug (Purple)", "backgroundColor": "#7b1fa2", "color": "#fff" },
+            { "label": "Highlight (Neon Pink)", "backgroundColor": "#ff2d95", "color": "#fff" },
+            { "label": "Warning (Amber)", "backgroundColor": "#ff8f00", "color": "#000" },
+            { "label": "Subtle (Dark Teal)", "backgroundColor": "#1a3a3a", "color": "#7cc" },
+            { "label": "Electric Blue", "backgroundColor": "#0055ff", "color": "#fff" },
+            { "label": "Coral", "backgroundColor": "#ff6f61", "color": "#000" }
+          ],
+          "description": "List of colors available for line highlighting. Each entry needs 'label', 'backgroundColor' (hex), and 'color' (hex for text)."
+        },
+        "lineColorHighlight.boldText": {
+          "type": "boolean",
+          "default": true,
+          "description": "Make highlighted line text bold."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}
